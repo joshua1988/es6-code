@@ -1,0 +1,192 @@
+[sosunnyproject-temp](https://sosunnyproject.github.io/react/study/javascript/es6-01/)
+
+# Const / Let / Var
+
+### before we start...
+#### scoping: "where can these variables be accessed" 어디서부터 어디파트까지 이 변수를 사용할 수 있는가
+- block-scoped: if { HERE  }, for() {   HERE  }....
+- function-scoped: function() { HERE  }
+
+#### hoisting? (es5...)
+- Hoisting is JS's default behavior of moving all declarations to the *TOP* of the current scope (to the top of the current scirpt or the current function)
+- JS only hoists declaration, not initialization.
+- _??ES 6??_
+
+불가능
+```javascript
+x = 5;
+console.log(x);
+const x=10;
+```
+가능
+```javascript
+x = 5;
+console.log(x);
+//let x; 가능
+let x=10;
+```
+
+
+## ES 5 
+1. var
+- easy to have global and local variables collide
+- function 안에서 선언하지 않았으면 globally scoped.
+- 두 번 선언/정의 해도 에러가 안뜸
+
+
+2. var & hoisting
+
+- "Javascript: a variable can be declared after it has been used."
+- "Because hoisting behavior of JS: moving all declaration to the top!"
+- "JS only hoists declarations, not initializations."
+
+> when i switch x = 5; <---> var x; in the code below, it returns 'undefined' because it cannot bring up initialization to the top.
+
+```
+<html> 
+<body>
+<p id="demo"></p>
+<script>
+x = 5;
+elem  = document.getElementById("demo");
+elem.innerHTML = x;
+var x;
+</script>
+<body>
+</html>
+```
+
+## ES 6
+
+### const
+- block-scoped
+- cannot change the value, but doesn't mean it's _immutable_. 값을 바꿀 수는 없지만, immutable까지는 아니다.
+- you can change the content of objects inside. (예, redux/react) 
+
+### let
+- block-scoped
+- cannot re-declare. you can re-define. 같은 이름으로 새로운 선언을 할 수 없다. 다른 값으로 재정의는 가능하다.
+- inner functions - useful
+
+### var
+- function-scoped
+- can override. (this would cause error, especially when you forgot you already used that variable name)
+- _??if wanna use like 'var' (es5 var), you have to create a different context using a closure to preserve the value??_
+    - [mozilla example-code] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+
+
+> ref: https://www.w3schools.com/js/js_hoisting.asp 
+
+> ref: https://appendto.com/2016/12/when-to-use-es5-var-vs-es6-let-2/
+
+> ref: https://www.youtube.com/watch?v=q8SHaDQdul0 
+
+> ref: Udemy - https://www.udemy.com/react-2nd-edition/ 
+
+
+# Arrow Function
+
+```javascript
+(arguments) => { 
+    return _____ ;
+}
+
+// {} this is optional
+
+(a,b) => return a+b;
+
+
+function() {
+    this.refersToThisFunction
+}
+
+
+() => {
+    this.refersToClass
+}
+```
+
+# Example codes for const/let/var, arrow function
+
+## const,let,var in REACT
+[code](https://github.com/poscoict-arvrmr/second/tree/master/app/reducers)
+_redux - part of reducer code_
+
+```javascript
+const defaultState = {
+    isConnected: true,   //wifi
+    isSignedin: false,   //login
+    isRecording : false  //camera
+}
+console.log(defaultState);
+console.log("------------REDUCER/defaultState---------------");
+
+export default function checker(state=defaultState, action){
+    switch(action.type){
+        case START_REC :
+            console.log('[reducer/STARTREC]', 'reducer', state, action);
+            return {
+                ...state,
+                isRecording:true
+            }
+        case STOP_REC :
+            console.log('[reducer/STOPREC]', 'reducer', state, action);
+            return {
+                ...state,
+                isRecording:false
+            }
+        default :
+            return state;
+    }
+}
+```
+
+
+
+## Arrow in REACT
+[code](https://github.com/sosunnyproject/react-test/tree/master/movie_app)
+```javascript
+class App extends Component {
+//lifecycle events (e.g. componentWillMount) or set any state you should use class.
+// const App = props => { return <Movie /> }; is possible if you want stateless, functional components
+  render() {
+    return (
+      <div className="App">
+        {movies.map((movie, index) => {
+          return <Movie title={movie.title} poster={movie.poster} key={index} />
+        })}
+      </div>
+    );
+  }
+}
+```
+
+```javascript
+//ES5 function writing
+    // setTimeout(function(){
+    //   console.log('hello')
+    // }, 1000)
+
+setTimeout(() => console.log('hello'), 1000);
+```
+
+```javascript
+//state = { movies:[ ] } defined.
+setTimeout( () =>
+    {
+      this.setState(
+        {
+          movies: [
+            //... brings-all-pre-defined-stuff
+          ...this.state.movies,
+           // new object you want to add to the movies array
+          {
+            title: "Chef's Table",
+            poster:"https://upload.wikimedia.org/wikipedia/en/1/11/Chef%27s_Table.jpg"
+          }
+        ]
+      })
+    }, 1000);
+  }
+  ```
