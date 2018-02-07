@@ -75,3 +75,6 @@ scope chain 목록을 0부터 검색하여 변수명을 찾아 xxx를 할당
 19. y 변수 선언처리
 20. y 변수 값할당
 21. this value 연결
+
+### Reference
+[Javascript Execution Context | PoiemaWeb](http://poiemaweb.com/js-execution-context)
