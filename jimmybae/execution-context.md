@@ -39,6 +39,8 @@ outer();
 | Scope chain | Variable object, parent scope | 상위 AO, GO를 가르킨다 |
 | this value | Context object | 함수 호출 패턴에 의해 결정 |
 
+[Execution context 생성과정](https://cdn.rawgit.com/jimmybae/es6-code/master/jimmybae/execution-context/index.html)
+
 ### 생성과정
 1. Global Object 생성
 > 컨트롤이 실행 컨텍스트에 진입 전 Global Object가 생성
