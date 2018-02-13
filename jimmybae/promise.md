@@ -14,7 +14,9 @@ Promise.prototype.then(onFulfilled, onRejected)
 const p = new Promise((resolve, reject) => {
   const num = Math.floor(Math.random() * 10);
   console.log('[num]', num);
-  if(num % 2 == 0) {
+  if(num === 0 ) {
+    throw 'zero';
+  } else if(num % 2 == 0) {
     resolve('even number');
   } else {
     reject('odd number');
@@ -27,6 +29,20 @@ p.then(
 );
 
 p.catch((e) => { console.log('[catch]   ', e); });
+/*
+[num] 0
+[rejected] zero
+[catch]    zero
+*/
+/*
+[num] 2
+[fulfilled] even number
+*/
+/*
+[num] 3
+[rejected] odd number
+[catch]    odd number
+*/
 ```
 
 ### 2. catch
@@ -66,7 +82,7 @@ const p3 = new Promise((resolve, reject) => {
 });
 
 Promise.all([p1, p2, p3]).then(function (values) {
-    console.log(values); // [3, 1337, "foo"]
+    console.log(values); // [1, 2, 'setTimeout Resolve']
 });
 ```
 

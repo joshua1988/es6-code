@@ -86,7 +86,7 @@ const jimmy = {
     }
   }
 };
-constageAdderIteratorji = jimmy.ageAdder();
+const ageAdderIterator = jimmy.ageAdder();
 console.log(ageAdderIterator.next().value);
 console.log(ageAdderIterator.next().value);
 console.log(ageAdderIterator.next().value);
