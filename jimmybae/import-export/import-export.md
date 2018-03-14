@@ -115,3 +115,8 @@ $ npm i babel-preset-env --save-dev
 ```sh
 $ npm run build
 ```
+
+### Reference
+[ES6 In Depth: 모듈 ★ Mozilla 웹 기술 블로그](http://hacks.mozilla.or.kr/2016/05/es6-in-depth-modules/)
+[ECMAScript6 - Module | PoiemaWeb](http://poiemaweb.com/es6-module)
+[ECMAScript6 - Babel + Webpack | PoiemaWeb](http://poiemaweb.com/es6-babel)
